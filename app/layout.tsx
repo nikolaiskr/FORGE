@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   description: 'Тренировки, питание, шаги, стрик и баланс мышц в одном понятном трекере.',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
