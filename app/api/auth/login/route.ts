@@ -1,0 +1,2 @@
+import { createSession, login, sessionCookie } from '@/db/auth';
+export async function POST(request:Request){try{const {email,password}=await request.json() as {email:string;password:string};const user=await login(email,password),token=await createSession(user.userId);return Response.json({user:{name:user.name}},{headers:{'Set-Cookie':sessionCookie(token)}})}catch(error){return Response.json({error:error instanceof Error?error.message:'Не удалось войти'},{status:401})}}

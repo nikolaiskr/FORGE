@@ -1,0 +1,2 @@
+import { createSession, register, sessionCookie } from '@/db/auth';
+export async function POST(request:Request){try{const {name,email,password}=await request.json() as {name:string;email:string;password:string};const user=await register(name,email,password),token=await createSession(user.userId);return Response.json({user:{name:user.name}},{headers:{'Set-Cookie':sessionCookie(token)}})}catch(error){return Response.json({error:error instanceof Error?error.message:'Не удалось зарегистрироваться'},{status:400})}}
